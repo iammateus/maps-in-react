@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  react-maps:
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    ports: 
+      - 8000:3000
+      - 8001:5000
+    # command: > 
+    #   sh -c "cd /var/www/html &&
+    #           npm install && 
+    #           npm install -g serve && 
+    #           npm run build"
