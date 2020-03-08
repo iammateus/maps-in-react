@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import TextField from '../TextField'
 import Axios from 'axios';
+import StyledList from './styled/StyledList'
+import ListItem from './styled/ListItem'
 
 function PlaceAutocompleteField() {
 
@@ -274,17 +276,17 @@ function PlaceAutocompleteField() {
                     onChange={handleChange}
                 />
             </label>
-            <ul>
+            <StyledList>
                 {
                     apiPredictions && apiPredictions.map((apiPrediction, index) => {
 
                         return (
-                            <li key={index}>{apiPrediction.structured_formatting.main_text}</li>
+                            <ListItem key={index}>{apiPrediction.structured_formatting.main_text}</ListItem>
                         );
 
                     })
                 }
-            </ul>
+            </StyledList>
         </div>
   );
 }
