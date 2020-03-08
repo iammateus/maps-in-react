@@ -285,7 +285,7 @@ function PlaceAutocompleteField() {
                     apiPredictions && apiPredictions.map((apiPrediction, index) => {
 
                         return (
-                            <ListItem key={index}>{apiPrediction.structured_formatting.main_text}</ListItem>
+                            <ListItem onClick={() => setPlace(apiPrediction.structured_formatting.main_text)} key={index}>{apiPrediction.structured_formatting.main_text}</ListItem>
                         );
 
                     })
