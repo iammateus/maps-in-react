@@ -12,7 +12,7 @@ function PlaceAutocompleteField() {
 
     const getApiPredictions = async (placeToSearch) => {
 
-        let data = null;
+        let data = [...apiPredictions];
 
         if( !placeToSearch ){
             placeToSearch = place;
@@ -33,7 +33,7 @@ function PlaceAutocompleteField() {
             params
         });
 
-        if(response.status === 200 && response.data){
+        if(response.status === 200 && response.data && response.data.predictions){
             data = response.data.predictions;
         }  */
        
@@ -263,6 +263,10 @@ function PlaceAutocompleteField() {
 
         if(apiPredictionsResponse){
             setApiPredictions([...apiPredictionsResponse]);
+        }
+
+        if(placeFieldValue.length === 0){
+            setApiPredictions([]);
         }
 
     };
