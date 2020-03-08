@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaceAutocompleteField from './PlaceAutocompleteField';
+import PlaceAutocompleteField from '../PlaceAutocompleteField';
 
 function App() {
   return (
