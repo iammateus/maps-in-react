@@ -6,20 +6,20 @@ import Axios from 'axios';
 function PlaceAutocompleteField() {
 
     const [ place, setPlace ] = useState('');
-    const [ apiPredictions, setApiPredictions ] = useState('');
+    const [ apiPredictions, setApiPredictions ] = useState([]);
 
     const getApiPredictions = async (placeToSearch) => {
+
+        let data = null;
 
         if( !placeToSearch ){
             placeToSearch = place;
         }
 
-
-        if(!(placeToSearch.length % 5 === 0)){
-            // return;
+        if(!(placeToSearch.length % 2 === 0)){
+            return data;
         }
-
-        /* 
+        
         const API_URL = process.env.REACT_APP_PROXY_URL + process.env.REACT_APP_GOOGLE_MAPS_API_URL;
 
         const params = {
@@ -27,17 +27,14 @@ function PlaceAutocompleteField() {
             key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
         }
 
-        let response =  await Axios.get(API_URL, {
+        /* let response =  await Axios.get(API_URL, {
             params
         });
 
-        */let data = [];/*
-
-        if(response.status === 200){
+        if(response.status === 200 && response.data){
             data = response.data.predictions;
-        } 
-        */
-
+        }  */
+       
         data = [
             {
                 "description" : "Rua 25 de Março - Centro Histórico de São Paulo, São Paulo - SP, Brasil",
@@ -256,15 +253,15 @@ function PlaceAutocompleteField() {
 
     const handleChange = async (event) => {
 
-        let placeFieldValue = event.target.value;
+        const placeFieldValue = event.target.value;
 
         setPlace(placeFieldValue);
 
-        let apiPredictionsResponse = await getApiPredictions(placeFieldValue);
+        const apiPredictionsResponse = await getApiPredictions(placeFieldValue);
 
-        // console.log("apiPredictionsResponse", apiPredictionsResponse);
-
-        setApiPredictions([...apiPredictionsResponse]);
+        if(apiPredictionsResponse){
+            setApiPredictions([...apiPredictionsResponse]);
+        }
 
     };
 
@@ -277,8 +274,16 @@ function PlaceAutocompleteField() {
                     onChange={handleChange}
                 />
             </label>
-            <ul> 
-                
+            <ul>
+                {
+                    apiPredictions && apiPredictions.map((apiPrediction, index) => {
+
+                        return (
+                            <li key={index}>{apiPrediction.structured_formatting.main_text}</li>
+                        );
+
+                    })
+                }
             </ul>
         </div>
   );
