@@ -6,24 +6,35 @@ import StyledMap from "./styled/StyledMap";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-function Map(props) {
+function Map() {
+
+    const [mapOptions, setMapOptions] = useState({
+        center: {
+            lat: 59.95,
+            lng: 30.33
+        },
+        zoom: 11
+    });
 
     return (
         <StyledMap>
-            <PlaceAutocompleteField />
+            
+            <PlaceAutocompleteField setMapOptions={setMapOptions}/>
+
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-                    defaultCenter={props.center}
-                    defaultZoom={props.zoom}
+                    defaultCenter={mapOptions.center}
+                    defaultZoom={mapOptions.zoom}
                 >
                     <AnyReactComponent
-                        lat={props.center.lat}
-                        lng={props.center.lng}
+                        lat={mapOptions.center.lat}
+                        lng={mapOptions.center.lng}
                         text="My Marker"
                     />
                 </GoogleMapReact>
             </div>
+            
         </StyledMap>
     );
 

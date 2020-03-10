@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Map from '../Map';
 
 
 function App() {
 
-    const [mapOptions, setMapOptions] = useState({
-        center: {
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
-    });
-
     return (
-        <Map {...mapOptions} />
+        <Map  />
     );
+
 }
 
 export default App;
