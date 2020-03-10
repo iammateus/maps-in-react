@@ -4,6 +4,7 @@ import TextField from '../TextField'
 import Axios from 'axios';
 import StyledList from './styled/StyledList'
 import ListItem from './styled/ListItem'
+import StyledPlaceAutocompleteField from './styled/StyledPlaceAutocompleteField'
 
 function PlaceAutocompleteField() {
 
@@ -65,7 +66,7 @@ function PlaceAutocompleteField() {
     }
 
     return (
-        <div>
+        <StyledPlaceAutocompleteField>
             <label>
                 <TextField 
                     placeholder='Search for places'
@@ -86,7 +87,7 @@ function PlaceAutocompleteField() {
                     })
                 }
             </StyledList>
-        </div>
+        </StyledPlaceAutocompleteField>
   );
 }
 

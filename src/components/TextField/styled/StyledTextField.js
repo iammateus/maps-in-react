@@ -7,7 +7,7 @@ const StyledTextField = styled.input`
     border: none;
     border-bottom: 1px solid #8c7f7f;
     outline: none;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.4);
 `
 
 export default StyledTextField;
