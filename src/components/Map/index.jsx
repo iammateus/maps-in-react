@@ -10,8 +10,8 @@ function Map() {
 
     const [mapOptions, setMapOptions] = useState({
         center: {
-            lat: 59.95,
-            lng: 30.33
+            lat: -23.51395429999999,
+            lng: -46.38868249999999
         },
         zoom: 11
     });
@@ -24,7 +24,7 @@ function Map() {
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-                    defaultCenter={mapOptions.center}
+                    center={mapOptions.center}
                     defaultZoom={mapOptions.zoom}
                 >
                     <AnyReactComponent
@@ -34,7 +34,7 @@ function Map() {
                     />
                 </GoogleMapReact>
             </div>
-            
+
         </StyledMap>
     );
 

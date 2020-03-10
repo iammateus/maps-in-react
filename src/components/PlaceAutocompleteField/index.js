@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TextField from '../TextField'
 import Axios from 'axios';
@@ -6,10 +6,44 @@ import StyledList from './styled/StyledList'
 import ListItem from './styled/ListItem'
 import StyledPlaceAutocompleteField from './styled/StyledPlaceAutocompleteField'
 
-function PlaceAutocompleteField() {
+function PlaceAutocompleteField(props) {
 
     const [ place, setPlace ] = useState('');
     const [ apiPredictions, setApiPredictions ] = useState([]);
+    const [ placeId, setPlaceId ] = useState(null);
+
+    useEffect(() => {
+        setMapOptions();
+    }, [placeId]); 
+
+    const setMapOptions = async (placeToSearch) => {
+
+        const API_URL = process.env.REACT_APP_PROXY_URL + process.env.REACT_APP_GOOGLE_MAPS_PLACE_DETAILS_API_URL;
+
+        const params = {
+            place_id: placeId,
+            key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+        }
+
+        let response =  await Axios.get(API_URL, {
+            params
+        });
+
+        if(response.status === 200 && response.data && response.data.result){
+
+            const mapOptions = {
+                center: {
+                    lat: response.data.result.geometry.location.lat,
+                    lng: response.data.result.geometry.location.lng
+                },
+                zoom: 11
+            };
+
+            props.setMapOptions({...mapOptions});
+
+        } 
+       
+    }
 
     const getApiPredictions = async (placeToSearch) => {
 
@@ -23,7 +57,7 @@ function PlaceAutocompleteField() {
             return data;
         }
         
-        const API_URL = process.env.REACT_APP_PROXY_URL + process.env.REACT_APP_GOOGLE_MAPS_API_URL;
+        const API_URL = process.env.REACT_APP_PROXY_URL + process.env.REACT_APP_GOOGLE_MAPS_PLACE_AUTOCOMPLETE_API_URL;
 
         const params = {
             input: placeToSearch,
@@ -60,8 +94,13 @@ function PlaceAutocompleteField() {
 
     };
 
-    const changePlaceByItemList = (placeName) => {
-        setPlace(placeName);
+    const selectPlace = (selectedPlace) => {
+
+        let selectedPlaceName = selectedPlace.structured_formatting.main_text;
+        let selectedPlaceId = selectedPlace.place_id;
+
+        setPlace(selectedPlaceName);
+        setPlaceId(selectedPlaceId);
         setApiPredictions([]);
     }
 
@@ -81,7 +120,7 @@ function PlaceAutocompleteField() {
                         let placeName = apiPrediction.structured_formatting.main_text;
 
                         return (
-                            <ListItem onClick={() => {changePlaceByItemList(placeName)}} key={index}>{placeName}</ListItem>
+                            <ListItem onClick={() => {selectPlace(apiPrediction)}} key={index}>{placeName}</ListItem>
                         );
 
                     })
