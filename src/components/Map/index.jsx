@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import PlaceAutocompleteField from "../PlaceAutocompleteField";
+import { IconContext } from "react-icons";
+import { MdPlace } from 'react-icons/md';
 
 import StyledMap from "./styled/StyledMap";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = () => (<IconContext.Provider value={{ color: "red", className: "global-class-name", size: '3em' }}>
+                                    <div>
+                                        <MdPlace />
+                                    </div>
+                                </IconContext.Provider>)
 
 function Map() {
 
@@ -13,7 +19,7 @@ function Map() {
             lat: -23.51395429999999,
             lng: -46.38868249999999
         },
-        zoom: 11
+        zoom: 18
     });
 
     return (
@@ -30,7 +36,6 @@ function Map() {
                     <AnyReactComponent
                         lat={mapOptions.center.lat}
                         lng={mapOptions.center.lng}
-                        text="My Marker"
                     />
                 </GoogleMapReact>
             </div>
