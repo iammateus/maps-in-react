@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import TextField from '../TextField'
 import Axios from 'axios';
 import StyledList from './styled/StyledList'
 import ListItem from './styled/ListItem'
 import StyledPlaceAutocompleteField from './styled/StyledPlaceAutocompleteField'
+import debounce from '../../Utils/debounce'
 
 function PlaceAutocompleteField(props) {
 
@@ -53,10 +54,6 @@ function PlaceAutocompleteField(props) {
             placeToSearch = place;
         }
 
-        if(!(placeToSearch.length % 2 === 0)){
-            return data;
-        }
-        
         const API_URL = process.env.REACT_APP_PROXY_URL + process.env.REACT_APP_GOOGLE_MAPS_PLACE_AUTOCOMPLETE_API_URL;
 
         const params = {
@@ -76,23 +73,30 @@ function PlaceAutocompleteField(props) {
 
     }
 
-    const handleChange = async (event) => {
+    const handleChange = (event) => {
 
         const placeFieldValue = event.target.value;
 
         setPlace(placeFieldValue);
 
-        const apiPredictionsResponse = await getApiPredictions(placeFieldValue);
+        updateApiPredictions(placeFieldValue);
+        
+    };
 
+    const updateApiPredictions = useRef(debounce(async (placeFieldValue) => {
+
+        const apiPredictionsResponse = await getApiPredictions(placeFieldValue);
+    
         if(apiPredictionsResponse){
             setApiPredictions([...apiPredictionsResponse]);
         }
-
+    
         if(placeFieldValue.length === 0){
             setApiPredictions([]);
         }
+    
+    }, 600)).current;
 
-    };
 
     const selectPlace = (selectedPlace) => {
 
