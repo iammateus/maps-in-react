@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import PlaceAutocompleteField from "../PlaceAutocompleteField";
-import { IconContext } from "react-icons";
-import { MdPlace } from 'react-icons/md';
 
 import StyledMap from "./styled/StyledMap";
-
-const AnyReactComponent = () => (<IconContext.Provider value={{ color: "red", className: "global-class-name", size: '3em' }}>
-                                    <div>
-                                        <MdPlace />
-                                    </div>
-                                </IconContext.Provider>)
+import MapLocationIcon from './MapLocationIcon';
 
 function Map() {
 
@@ -33,7 +26,7 @@ function Map() {
                     center={mapOptions.center}
                     defaultZoom={mapOptions.zoom}
                 >
-                    <AnyReactComponent
+                    <MapLocationIcon
                         lat={mapOptions.center.lat}
                         lng={mapOptions.center.lng}
                     />
