@@ -4,6 +4,7 @@ import PlaceAutocompleteField from "../PlaceAutocompleteField";
 
 import StyledMap from "./styled/StyledMap";
 import MapLocationIcon from './MapLocationIcon';
+import StyledMapContainer from './styled/StyledMapContainer';
 
 function Map() {
 
@@ -20,7 +21,7 @@ function Map() {
             
             <PlaceAutocompleteField setMapOptions={setMapOptions}/>
 
-            <div style={{ height: '100vh', width: '100%' }}>
+            <StyledMapContainer>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
                     center={mapOptions.center}
@@ -31,7 +32,7 @@ function Map() {
                         lng={mapOptions.center.lng}
                     />
                 </GoogleMapReact>
-            </div>
+            </StyledMapContainer>
 
         </StyledMap>
     );
