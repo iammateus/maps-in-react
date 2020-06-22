@@ -30,3 +30,6 @@ or
 | REACT_APP_GOOGLE_MAPS_PLACE_AUTOCOMPLETE_API_URL | https://maps.googleapis.com/maps/api/place/autocomplete/json | 
 | REACT_APP_GOOGLE_MAPS_PLACE_DETAILS_API_URL | https://maps.googleapis.com/maps/api/place/details/json | 
 | REACT_APP_GOOGLE_MAPS_API_KEY |  [Your Google API key](https://support.google.com/googleapi/answer/6158862?hl=en)  | 
+
+## License
+[MIT](https://github.com/iammateus/maps-in-react/blob/master/LICENSE)
