@@ -1,68 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Maps in React
 
-## Available Scripts
+Example app of Google Maps Platform usage with React where you can search for places and go to the location on the map.
 
-In the project directory, you can run:
+![enter image description here](https://github.com/iammateus/maps-in-react/blob/assets/demo.png?raw=true)
 
-### `yarn start`
+## Requeriments
+This project has a few dependencies that you need to install.
+|  Method | Dependencies |
+|--|--|
+| Docker | [Docker](https://docs.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) |
+| Without Docker | [Node](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)|
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ ## Installation
+Using Docker 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+    $ docker-compose up
+or
 
-### `yarn test`
+    $ yarn install
+or
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    $ npm install
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ ## Env
+ A list of required environment variables that you need to set in the .env file:
+| Name | Value |
+|--|--|
+| REACT_APP_PROXY_URL (A cors bypass) | https://cors-anywhere.herokuapp.com/ |
+| REACT_APP_GOOGLE_MAPS_PLACE_AUTOCOMPLETE_API_URL | https://maps.googleapis.com/maps/api/place/autocomplete/json | 
+| REACT_APP_GOOGLE_MAPS_PLACE_DETAILS_API_URL | https://maps.googleapis.com/maps/api/place/details/json | 
+| REACT_APP_GOOGLE_MAPS_API_KEY |  [Your Google API key](https://support.google.com/googleapi/answer/6158862?hl=en)  | 
