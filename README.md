@@ -21,7 +21,7 @@ or
 or
 
     $ npm install
-
+To start without docker: yarn/npm start
  ## Env
  A list of required environment variables that you need to set in the .env file:
 | Name | Value |
