@@ -23,7 +23,7 @@ or
     $ npm install
 To start without docker: yarn/npm start
  ## Env
- A list of required environment variables that you need to set in the .env file:
+ A list of required environment variables that you need to set:
 | Name | Value |
 |--|--|
 | REACT_APP_PROXY_URL (A cors bypass) | https://cors-anywhere.herokuapp.com/ |
